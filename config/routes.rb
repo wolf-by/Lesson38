@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   get 'home/index'
-  get 'articles/index'
-
+  
   get 'terms/index'
   get 'abouts/index'
+  get 'articles/list'
+
+  get 'articles/:id', to: 'articles#show', as: 'article'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  resources :articles
+  resource :articles, only: [:new, :create], path_names: { :new => '' }
 
   resource :contacts, only: [:new, :create], path_names: { :new => '' }
 
